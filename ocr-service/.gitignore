@@ -1,0 +1,20 @@
+# Bỏ thư mục ảo
+venv/
+.env/
+
+# Bỏ file biên dịch Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Bỏ file log
+*.log
+
+# Bỏ file hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Bỏ file IDE
+.vscode/
+.idea/
