@@ -10,8 +10,7 @@ def sharpen_image(image, alpha=1.5, beta=-0.5):
 def normalize_text_thickness(image):
     """Giảm độ dày của chữ quá đậm, giữ chi tiết cho OCR."""
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    blur = cv2.GaussianBlur(thresh, (3, 3), 0)
+    blur = cv2.GaussianBlur(gray, (3, 3), 0)
     return cv2.cvtColor(blur, cv2.COLOR_GRAY2BGR)
 
 def deskew_image(image):
@@ -92,6 +91,6 @@ def preprocess_scorecard(input_path, output_path):
     print(f"Ảnh đã xử lý được lưu tại: {output_path}")
 
 if __name__ == "__main__":
-    input_file = "data/022207010596_school_10_transcript_file.jpeg"
+    input_file = "data/040206010539_school_12_transcript_file.jpeg"
     output_file = "bang_diem_processed.jpg"
     preprocess_scorecard(input_file, output_file)

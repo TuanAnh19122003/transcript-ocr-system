@@ -14,7 +14,6 @@ def read_scorecard(image_path, lang_list=['vi', 'en']):
     return extracted_text
 
 def correct_class_numbers(text):
-    # Sửa ký tự 1 bị nhận nhầm
     text = re.sub(r'[Il|]', '1', text)
 
     def fix_match(match):
@@ -28,12 +27,24 @@ def correct_class_numbers(text):
     pattern = r'\d+[A-Za-z]+\d+'
     corrected_text = re.sub(pattern, fix_match, text)
 
-    # Thêm từ "Lớp" nếu phát hiện số lớp học đứng một mình
     corrected_text = re.sub(r'(?m)^(?P<class>\d+[A-Za-z]+\d+)$', r'Lớp: \g<class>', corrected_text)
 
     return corrected_text
 
+def correct_scores(text):
 
+    def fix_score(match):
+        s = match.group()
+        try:
+            val = float(s)
+            if val > 10:
+                return f"{str(val)[0]}.{str(val)[1]}"
+            return s
+        except:
+            return s
+
+    corrected_text = re.sub(r'\b\d+\b', fix_score, text)
+    return corrected_text
 
 def save_text_to_file(text, output_txt_path):
     with open(output_txt_path, 'w', encoding='utf-8') as f:
@@ -46,4 +57,5 @@ if __name__ == "__main__":
 
     text = read_scorecard(processed_file)
     text = correct_class_numbers(text)
+    text = correct_scores(text)
     save_text_to_file(text, output_txt_file)
