@@ -1,124 +1,96 @@
-Họ tên học sinh: NGUYỄN ĐÌNH ĐẠT
-Lớp: 12A3
-Ban cơ bản
-Năm học: 2023-20
-Các môn học
-cao:
-Ổp
-Điểm trung bình hoặc
-Điểm
-Môn học/
-xếp 1oại các môn
-hoặc
-Giáo viên bộ môn ký xác nhận ĐTB
-Hoạt động GD
-xếp 1oại
-môn học, xếp 1oại; sửa chữa hoặc
-HKỳ 1
-HKỳ 11
-sau KT 1ại
-xét (nếu có)
-nhậr
-CN
-(nếu có)
-(ký và ghi rõ họ
-Toán học
-8.8
-8.3
-8.5
-[Nguyễn Thị Ngọc Mai  //u
-Vật 1í
-8.3
-8.3
-8.3
-[Đặng Thị Thơm
-2Jos
-Hóa học
-71
-7.8
-7.6
-JLê Thị Cầm (3am
-Sinh học
-8.2
-8.0
-8.1
-JNguyễn Thị Mẫu
-Mou
-Tin học
-8.9
-7.5
-8.0
-[Phan Chí Hiếu
+Họ và tên; ĐẶNG QUANG HÒA
+Lớp: 10A9
+Năm hpc; 2022
+2
+2023
+Diem trung
+Đỉểm trung b1nh môn hoc
+b1nh món hpc
+hoặc mức dánh gia
+hojc mửr dúnh
+Nhận xét sự tiến bô, ưu điểm nổi
+Môn hodHoat dộng
+ci1 sau dúnh
+bật; hạn chế chủ yếu (nếu có) và
+duc
+cia 1pi, rèn
+1uyin thêm
+chữ kí của giáo viên môn hoc
+Hoc kì 1
+Hoc kì 11
+Cà năm
+trong k1 nghi
+bè (nếu có)
 Ngữ văn
-7.9
-7.6
+7.3
 7.7
-Lê Thị Vinh
-UJ
-Lịch sử
-7.5
-9.0
-8.5
-[Đặng Thị Kim Hoa %
-Địa 1í
-9.0
+7.6
+Hoàng Thị Thoa
+Toán
+6.6
+6.6
+6.6
+Lê Văn Thọ1
+Anh
+6.8
+1.3
+7.1
+Phạm Đoàn Hương Giang1
+Giáo dục thể chất
+Đ
+Đ
+Đ
+Phạm Văn Hưng
+GDQP-AN
 8.3
-8.5
-JĐặng Tbị Hà
-Ngoại ngữ (Tiếng
-Anh)
-8.9
-9.0
-9.0
-[Luu Thị Anh Thơ
-Ue
-8.4
+1.2
+7.6
+Nguyễn Hoài Trang1
+HĐ TN, hướng
+Đ
+Đ
+Đ
+Lê Văn
+nghiệp
+Giáo dục địa phương
+Đ
+Đ
+Đ
+Dương Thị Minh Nguyệt
+Vật 1í
+5.9
+7.0
+6.6
+Hoàng Văn Ba
+Hóa học
 8.2
-8.3
-GDCD
-[Hồ Thị Hà
-Công nghệ
-8.7
-8.4
-8.5
-[Nguyễn Thị
-Jab
-Thể dục
-Đ
-Đ
-Đ
-[Nguyễn Thị Thủy
-GDQP
-8.4
-9.1
-8.9
-[Nguyễn Thị Thu Hiên
-Điểm TB
-8.3
-8.3
-8.3
-[Đặng Thị Thơm
-2oe
-các môn học
-Thành
-Vinh, ngày 18
-5 năm 2024
-viên chủ nhiệm
+1.5
+7.7
+Hoàng Thị Lý
+Sinh học
+6.3
+7.8
+1.3
+Nguyễn Thị Thủy 1
+Lịch sử
+6.7
+7.7
+7.4
+Hoàng Thị Thuơng
+Tin học
+8.6
+7.7
+8.0
+Duơng Thị Thuơng
+[Trong trang này có sửa chữa ở: Không chỗ, thuộc môn học, hoạt động giáo dục:.
+Xác nhận của giáo viên chủ nhiệm
 Xác nhận của Hiệu trưởng
-Xác nhận của
-tên)
-(Ký, ghi rõ họ tên và
-dấu)
-(Ký và ghi rõ họ
-tye
-Hoàng Minh
-Thị Thơm
-Đặng
-nâng
-tên)
-Hằng
-phố
-tháng
-giáo
-đóng
-Lưong
+Lê Văn Thọ
+Nguỵễn; Tbí Khuyên
+CS1
+Được quét bằng CamScanner
+Lóp:
+gifo
+Tiếng
+Thọ1
+;
