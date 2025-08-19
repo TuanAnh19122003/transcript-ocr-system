@@ -14,19 +14,20 @@ def read_scorecard(image_path, lang_list=['vi', 'en']):
     return extracted_text
 
 def correct_class_numbers(text):
+    text = re.sub(r'[Il|]', '1', text)
+
     def fix_match(match):
         s = match.group()
         m = re.match(r'(\d+)([A-Za-z]+)(\d+)', s)
         if m:
             num1, letters, num2 = m.groups()
-            num1 = re.sub(r'[lI]', '1', num1)
-            num2 = re.sub(r'[lI]', '1', num2)
             return f"{num1}{letters}{num2}"
         return s
     
     pattern = r'\d+[A-Za-z]+\d+'
     corrected_text = re.sub(pattern, fix_match, text)
     return corrected_text
+
 
 def save_text_to_file(text, output_txt_path):
     with open(output_txt_path, 'w', encoding='utf-8') as f:
