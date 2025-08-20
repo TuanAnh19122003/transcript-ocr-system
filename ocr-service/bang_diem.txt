@@ -8,15 +8,15 @@ cao:
 Điểm trung bình hoặc
 Điểm
 Môn học/
-xếp 1oại các môn
+xếp loại các môn
 hoặc
 Giáo viên bộ môn ký xác nhận ĐTB
 Hoạt động GD
-xếp 1oại
-môn học, xếp 1oại; sửa chữa hoặc
-HKỳ 1
-HKỳ 1.1
-sau KT 1ại
+xếp loại
+môn học, xếp loại; sửa chữa hoặc
+HKỳ I
+HKỳ II
+sau KT lại
 xét (nếu có)
 nhậr
 CN
@@ -27,7 +27,7 @@ Toán học
 8.3
 8.5
 [Nguyễn Thị Ngọc Mai  //u
-Vật 1í
+Vật lí
 8.3
 8.3
 8.3
@@ -60,7 +60,7 @@ Lịch sử
 9.0
 8.5
 [Đặng Thị Kim Hoa %
-Địa 1í
+Địa lí
 9.0
 8.3
 8.5

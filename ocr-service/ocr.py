@@ -14,7 +14,7 @@ def read_scorecard(image_path, lang_list=['vi', 'en']):
     return extracted_text
 
 def correct_class_numbers(text):
-    text = re.sub(r'[Il|]', '1', text)
+    text = re.sub(r'(?<=\d)[Il|](?=\d)', '1', text)
 
     def fix_match(match):
         s = match.group()
