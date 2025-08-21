@@ -1,4 +1,4 @@
-===== KẾT QUẢ VỚI NGƯỠNG 0.3 =====
+===== KẾT QUẢ VỚI NGƯỠNG 0.5 =====
 Họ và tên: Trịnh Tuấn Anh
 Lớp: 10D3
 Năm học: 2018 - 2019
@@ -17,7 +17,6 @@ xếp loại, sửa chữa
 động giáo dục
 (nếu có)
 hoặc nhận xét (nếu có)
-HKỳ I |HKỳ II|
 CN
 (Ký tên ghi rõ họ tên)
 Toán
@@ -74,7 +73,6 @@ Thể dục
 Đ
 Đ
 Đ
-Lo] Quan Thị Hiền
 Phùng Bá Đam
 GDCD
 8.3
@@ -91,7 +89,6 @@ Bùi Thị Thu Hiền
 7.8
 7.4
 7.6
-bk
 Hồ Thị Phưong
 các môn học
 Trong bảng này có sửa chữa ở:

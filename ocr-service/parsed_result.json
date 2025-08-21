@@ -1,0 +1,78 @@
+{
+  "name": "Trịnh Tuấn Anh",
+  "class": "10D3",
+  "subjects": [
+    {
+      "subject": "Toán học",
+      "HK1": 7.4,
+      "HK2": 7.5,
+      "CN": 7.5
+    },
+    {
+      "subject": "Vật lý",
+      "HK1": 7.3,
+      "HK2": 7.9,
+      "CN": 7.7
+    },
+    {
+      "subject": "Hóa học",
+      "HK1": 7.8,
+      "HK2": 6.9,
+      "CN": 7.2
+    },
+    {
+      "subject": "Sinh học",
+      "HK1": 7.1,
+      "HK2": 7.7,
+      "CN": 7.5
+    },
+    {
+      "subject": "Ngữ văn",
+      "HK1": 7.7,
+      "HK2": 7.3,
+      "CN": 7.4
+    },
+    {
+      "subject": "Lịch sử",
+      "HK1": 7.5,
+      "HK2": 7.5,
+      "CN": 7.5
+    },
+    {
+      "subject": "Địa lý",
+      "HK1": 7.4,
+      "HK2": 7.0,
+      "CN": 7.1
+    },
+    {
+      "subject": "GDQP",
+      "HK1": 8.3,
+      "HK2": 7.8,
+      "CN": 8.0
+    },
+    {
+      "subject": "Thể dục",
+      "HK1": "Đ",
+      "HK2": "Đ",
+      "CN": "Đ"
+    },
+    {
+      "subject": "GDCD",
+      "HK1": 8.3,
+      "HK2": 8.1,
+      "CN": 8.2
+    },
+    {
+      "subject": "Tin học",
+      "HK1": 8.5,
+      "HK2": 8.0,
+      "CN": 8.2
+    },
+    {
+      "subject": "ĐTB",
+      "HK1": 7.8,
+      "HK2": 7.4,
+      "CN": 7.6
+    }
+  ]
+}
