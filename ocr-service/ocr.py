@@ -1,61 +1,74 @@
 import easyocr
-import cv2
+import os
 import re
-
-def read_scorecard(image_path, lang_list=['vi', 'en']):
-    img = cv2.imread(image_path)
-    if img is None:
-        raise FileNotFoundError(f"Không tìm thấy ảnh: {image_path}")
-
-    reader = easyocr.Reader(lang_list, gpu=False)
-    results = reader.readtext(img)
-
-    extracted_text = "\n".join([text for bbox, text, conf in results])
-    return extracted_text
 
 def correct_class_numbers(text):
     text = re.sub(r'(?<=\d)[Il|](?=\d)', '1', text)
 
-    def fix_match(match):
-        s = match.group()
-        m = re.match(r'(\d+)([A-Za-z]+)(\d+)', s)
-        if m:
-            num1, letters, num2 = m.groups()
-            return f"{num1}{letters}{num2}"
-        return s
+    if re.search(r'\b[Ll]ớp\b', text):
+        parts = text.split()
+        fixed_parts = []
+        for p in parts:
+            if re.match(r'\d+[A-Za-z]+\d+', p):
+                m = re.match(r'(\d+)([A-Za-z]+)(\d+)', p)
+                if m:
+                    num1, letters, num2 = m.groups()
+                    fixed_parts.append(f"{num1}{letters}{num2}")
+                else:
+                    fixed_parts.append(p)
+            else:
+                fixed_parts.append(p)
+        return " ".join(fixed_parts)
+    elif re.match(r'^\d+[A-Za-z]+\d+$', text):
+        return "Lớp: " + text
+
+    return text
+
+
+def run_ocr(image_path, lang=["vi", "en"]):
+    # 1. Kiểm tra file ảnh
+    if not os.path.exists(image_path):
+        print("Không tìm thấy ảnh:", image_path)
+        return []
     
-    pattern = r'\d+[A-Za-z]+\d+'
-    corrected_text = re.sub(pattern, fix_match, text)
+    # 2. Tạo reader
+    print("Đang khởi tạo EasyOCR...")
+    reader = easyocr.Reader(lang, gpu=False)
+    
+    # 3. Chạy OCR
+    print("Đang đọc ảnh:", image_path)
+    results = reader.readtext(
+        image_path,
+        detail=1,
+        text_threshold=0.4,
+        low_text=0.3,
+        link_threshold=0.4
+    )
+    
+    # 4. Hiển thị toàn bộ kết quả OCR
+    print("\nKẾT QUẢ OCR (chưa sửa):")
+    for bbox, text, prob in results:
+        print(f"- {text}  (độ tin cậy: {prob:.2f})")
 
-    corrected_text = re.sub(r'(?m)^(?P<class>\d+[A-Za-z]+\d+)$', r'Lớp: \g<class>', corrected_text)
+    # 5. Lọc theo ngưỡng 0.3 và hậu xử lý
+    extracted_texts = []
+    for bbox, text, prob in results:
+        if prob >= 0.3:
+            text = correct_class_numbers(text)  # ✅ sửa lỗi lớp
+            extracted_texts.append(text)
 
-    return corrected_text
+    # 6. Lưu ra file
+    with open("ocr_result.txt", "w", encoding="utf-8") as f:
+        f.write("===== KẾT QUẢ VỚI NGƯỠNG 0.3 =====\n")
+        f.write("\n".join(extracted_texts))
+        f.write("\n")
+    
+    print("\nKết quả OCR đã lưu tại: ocr_result.txt")
 
-def correct_scores(text):
+    return extracted_texts
 
-    def fix_score(match):
-        s = match.group()
-        try:
-            val = float(s)
-            if val > 10:
-                return f"{str(val)[0]}.{str(val)[1]}"
-            return s
-        except:
-            return s
 
-    corrected_text = re.sub(r'\b\d+\b', fix_score, text)
-    return corrected_text
-
-def save_text_to_file(text, output_txt_path):
-    with open(output_txt_path, 'w', encoding='utf-8') as f:
-        f.write(text)
-    print(f"Văn bản OCR đã được lưu tại: {output_txt_path}")
-
+# --- MAIN ---
 if __name__ == "__main__":
-    processed_file = "bang_diem_processed.jpg"
-    output_txt_file = "bang_diem.txt"
-
-    text = read_scorecard(processed_file)
-    text = correct_class_numbers(text)
-    text = correct_scores(text)
-    save_text_to_file(text, output_txt_file)
+    input_path = "bang_diem_processed.jpg"
+    run_ocr(input_path, lang=["vi", "en"])

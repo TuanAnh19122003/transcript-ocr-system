@@ -91,6 +91,6 @@ def preprocess_scorecard(input_path, output_path):
     print(f"Ảnh đã xử lý được lưu tại: {output_path}")
 
 if __name__ == "__main__":
-    input_file = "data/040206010539_school_12_transcript_file.jpeg"
+    input_file = "data/034307009675_school_10_transcript_file.jpg"
     output_file = "bang_diem_processed.jpg"
     preprocess_scorecard(input_file, output_file)
