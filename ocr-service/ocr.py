@@ -2,24 +2,8 @@ import easyocr
 import os
 import re
 import json
-import difflib
-
-# --- Danh sách môn học chuẩn để fuzzy match ---
-KNOWN_SUBJECTS = [
-    "Toán học","Vật lý","Hóa học","Sinh học","Ngữ văn","Lịch sử","Địa lý",
-    "Tiếng Anh","Ngoại ngữ","Tin học","GDQP","Thể dục","GDCD",
-    "Công nghệ","Âm nhạc","Mỹ thuật","HĐ TN","Giáo dục địa phương",
-    "GDKT&PL","KTCN"
-]
 
 # ========== CHUẨN HOÁ ==========
-def normalize_subject_name(name: str) -> str:
-    """Chuẩn hóa tên môn học bằng fuzzy match."""
-    name = name.strip()
-    if not name:
-        return name
-    match = difflib.get_close_matches(name, KNOWN_SUBJECTS, n=1, cutoff=0.65)
-    return match[0] if match else name
 
 def _normalize_class_token(tok: str) -> str:
     tok = tok.strip()
@@ -67,24 +51,24 @@ def is_score_token(token: str) -> bool:
         return True
     return False
 
-# ========== TRÍCH XUẤT TÊN ==========
+# ========== TRÍCH XUẤT TÊN HỌC SINH ==========
+
 def extract_student_name(lines: list[str]) -> str | None:
     for idx, line in enumerate(lines):
-        lower = line.lower()
-        if "họ và tên" in lower or "tên học sinh" in lower or "học sinh" in lower:
-            m = re.search(r'(?:họ và tên|tên học sinh|học sinh)\s*[:：]?\s*(.+)', line, flags=re.IGNORECASE)
-            if m and m.group(1).strip():
+        clean_line = line.strip()
+        lower = clean_line.lower()
+        if "họ" in lower or "tên" in lower:
+            m = re.search(r'[:：]\s*(.+)', clean_line)
+            if m:
                 return m.group(1).strip().title()
             if idx + 1 < len(lines):
                 next_line = lines[idx + 1].strip()
                 if next_line:
                     return next_line.title()
-    for line in lines:
-        if re.match(r'^[A-ZĐ][a-zà-ỹ]+\s+[A-ZĐ][a-zà-ỹ]+', line):
-            return line.strip().title()
     return None
 
-# ========== PARSE ==========
+# ========== PARSE OCR ==========
+
 def parse_ocr_results(lines: list[str]):
     data = {"name": extract_student_name(lines), "class": None, "subjects": []}
 
@@ -102,17 +86,17 @@ def parse_ocr_results(lines: list[str]):
     i = 0
     while i < len(lines):
         line = lines[i].strip()
-        if not line:
+        if not line or is_score_token(line):
             i += 1
             continue
 
-        subject_name = normalize_subject_name(line)
+        subject_name = line
         j = i + 1
         scores = []
 
         while j < len(lines):
             next_line = lines[j].strip()
-            if not next_line or normalize_subject_name(next_line) in KNOWN_SUBJECTS or next_line.upper() == "ĐTB":
+            if not next_line or (not is_score_token(next_line) and len(next_line) < 15):
                 break
             if is_score_token(next_line):
                 if next_line.upper() in ["Đ", "CD", "CĐ", "DAT", "ĐẠT", "CHƯA ĐẠT"]:
@@ -133,32 +117,11 @@ def parse_ocr_results(lines: list[str]):
 
         i = j
 
-    # Kiểm tra điểm trung bình (ĐTB) chỉ nếu chưa có
-    if not any(s["subject"]=="ĐTB" for s in subjects):
-        dtb_scores = []
-        for idx, line in enumerate(lines):
-            if line.strip().upper() == "ĐTB":
-                j = idx + 1
-                while j < len(lines):
-                    token = lines[j].strip()
-                    try:
-                        dtb_scores.append(float(token))
-                    except ValueError:
-                        pass
-                    j += 1
-                break
-        if dtb_scores:
-            subjects.append({
-                "subject": "ĐTB",
-                "HK1": dtb_scores[0] if len(dtb_scores) > 0 else None,
-                "HK2": dtb_scores[1] if len(dtb_scores) > 1 else None,
-                "CN": dtb_scores[2] if len(dtb_scores) > 2 else None
-            })
-
     data["subjects"] = subjects
     return data
 
 # ========== OCR + HẬU XỬ LÝ ==========
+
 def run_ocr(image_path, lang=["vi", "en"]):
     if not os.path.exists(image_path):
         print("Không tìm thấy ảnh:", image_path)
@@ -186,13 +149,14 @@ def run_ocr(image_path, lang=["vi", "en"]):
             extracted_texts.append(text)
 
     with open("ocr_result.txt", "w", encoding="utf-8") as f:
-        f.write("===== KẾT QUẢ VỚI NGƯỠNG 0.5 =====\n")
+        f.write("===== KẾT QUẢ OCR VỚI NGƯỠNG 0.5 =====\n")
         f.write("\n".join(extracted_texts))
         f.write("\n")
     print("\nKết quả OCR đã lưu tại: ocr_result.txt")
     return extracted_texts
 
 # ========== MAIN ==========
+
 if __name__ == "__main__":
     input_path = "bang_diem_processed.jpg"
     lines = run_ocr(input_path, lang=["vi", "en"])

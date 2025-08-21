@@ -3,7 +3,7 @@
   "class": "10D3",
   "subjects": [
     {
-      "subject": "Toán học",
+      "subject": "Toán",
       "HK1": 7.4,
       "HK2": 7.5,
       "CN": 7.5
@@ -43,6 +43,18 @@
       "HK1": 7.4,
       "HK2": 7.0,
       "CN": 7.1
+    },
+    {
+      "subject": "Anh",
+      "HK1": 7.1,
+      "HK2": 6.2,
+      "CN": 6.5
+    },
+    {
+      "subject": "nghệ",
+      "HK1": 8.6,
+      "HK2": 7.4,
+      "CN": 7.8
     },
     {
       "subject": "GDQP",
