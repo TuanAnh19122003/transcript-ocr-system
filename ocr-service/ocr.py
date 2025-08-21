@@ -2,25 +2,55 @@ import easyocr
 import os
 import re
 
-def correct_class_numbers(text):
-    text = re.sub(r'(?<=\d)[Il|](?=\d)', '1', text)
+def _normalize_class_token(tok: str) -> str:
+    tok = tok.strip()
+    m = re.match(r'^([0-9Il|]+)([A-Za-z0O48Bb]+)([0-9Il|]+)$', tok)
+    if not m:
+        return tok
 
-    if re.search(r'\b[Ll]ớp\b', text):
-        parts = text.split()
-        fixed_parts = []
-        for p in parts:
-            if re.match(r'\d+[A-Za-z]+\d+', p):
-                m = re.match(r'(\d+)([A-Za-z]+)(\d+)', p)
-                if m:
-                    num1, letters, num2 = m.groups()
-                    fixed_parts.append(f"{num1}{letters}{num2}")
-                else:
-                    fixed_parts.append(p)
-            else:
-                fixed_parts.append(p)
-        return " ".join(fixed_parts)
-    elif re.match(r'^\d+[A-Za-z]+\d+$', text):
-        return "Lớp: " + text
+    left, mid, right = m.groups()
+
+    left  = re.sub(r'[Il|]', '1', left)
+    right = re.sub(r'[Il|]', '1', right)
+
+    mid_up = mid.upper()
+    if re.fullmatch(r'[40]+', mid_up):
+        mid_letter = 'A'
+    elif re.fullmatch(r'[8]+', mid_up):
+        mid_letter = 'B'
+    else:
+        letters_only = ''.join(ch for ch in mid_up if ch.isalpha())
+        mid_letter = letters_only[0] if letters_only else 'A'
+
+    return f"{left}{mid_letter}{right}"
+
+
+def correct_class_numbers(text: str) -> str:
+    def repl_lop(m):
+        token = m.group(1)
+        fixed = _normalize_class_token(token)
+        return f"Lớp: {fixed}"
+    
+    if re.search(r'(?:\bLớp\b|\blop\b)', text, re.IGNORECASE):
+        return re.sub(r'(?:\bLớp\b|\blop\b)\s*[:：]?\s*([A-Za-z0-9Il|]+)', repl_lop, text, flags=re.IGNORECASE)
+
+    only = text.strip()
+    if re.fullmatch(r'[0-9Il|]+[A-Za-z0O48Bb]+[0-9Il|]+', only):
+        return "Lớp: " + _normalize_class_token(only)
+
+    return text
+
+def _normalize_scores(text: str) -> str:
+    text = re.sub(r'(\d),(\d)', r'\1.\2', text)
+    def fix_num(m):
+        val = m.group(0)
+        if len(val) == 2 and val.isdigit():
+            num = int(val)
+            if 0 < num <= 10:
+                return f"{val[0]}.{val[1]}"
+        return val
+
+    text = re.sub(r'\b\d{2}\b', fix_num, text)
 
     return text
 
@@ -45,7 +75,7 @@ def run_ocr(image_path, lang=["vi", "en"]):
         link_threshold=0.4
     )
     
-    # 4. Hiển thị toàn bộ kết quả OCR
+    # 4. Hiển thị toàn bộ kết quả OCR thô
     print("\nKẾT QUẢ OCR (chưa sửa):")
     for bbox, text, prob in results:
         print(f"- {text}  (độ tin cậy: {prob:.2f})")
@@ -54,7 +84,8 @@ def run_ocr(image_path, lang=["vi", "en"]):
     extracted_texts = []
     for bbox, text, prob in results:
         if prob >= 0.3:
-            text = correct_class_numbers(text)  # ✅ sửa lỗi lớp
+            text = correct_class_numbers(text)
+            text = _normalize_scores(text)
             extracted_texts.append(text)
 
     # 6. Lưu ra file
