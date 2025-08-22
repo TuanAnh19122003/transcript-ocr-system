@@ -143,13 +143,13 @@ def run_ocr(image_path, lang=["vi", "en"]):
 
     extracted_texts = []
     for bbox, text, prob in results:
-        if prob >= 0.5:
+        if prob >= 0.3:
             text = correct_class_numbers(text)
             text = _normalize_scores(text)
             extracted_texts.append(text)
 
     with open("ocr_result.txt", "w", encoding="utf-8") as f:
-        f.write("===== KẾT QUẢ OCR VỚI NGƯỠNG 0.5 =====\n")
+        f.write("===== KẾT QUẢ OCR =====\n")
         f.write("\n".join(extracted_texts))
         f.write("\n")
     print("\nKết quả OCR đã lưu tại: ocr_result.txt")

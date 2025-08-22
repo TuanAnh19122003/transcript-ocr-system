@@ -1,66 +1,66 @@
 {
-  "name": "Nguyễn Đình Đạt",
-  "class": "12A3",
+  "name": "Trịnh Tuấn Anh",
+  "class": "11D3",
   "subjects": [
     {
-      "subject": "Toán học",
-      "HK1": 8.8,
-      "HK2": 8.3,
-      "CN": 8.5
+      "subject": "Toán",
+      "HK1": 7.7,
+      "HK2": 9.0,
+      "CN": 8.6
     },
     {
-      "subject": "Vật lí",
-      "HK1": 8.3,
-      "HK2": 8.3,
-      "CN": 8.3
-    },
-    {
-      "subject": "Hóa học",
-      "HK1": 7.1,
-      "HK2": 7.8,
-      "CN": 7.6
-    },
-    {
-      "subject": "Sinh học",
-      "HK1": 8.2,
-      "HK2": 8.0,
-      "CN": 8.1
-    },
-    {
-      "subject": "Tin học",
-      "HK1": 8.9,
-      "HK2": 7.5,
+      "subject": "Vật lý",
+      "HK1": 7.8,
+      "HK2": 8.1,
       "CN": 8.0
     },
     {
+      "subject": "Hóa học",
+      "HK1": 8.2,
+      "HK2": 9.0,
+      "CN": 8.7
+    },
+    {
+      "subject": "Sinh học",
+      "HK1": 7.5,
+      "HK2": 8.1,
+      "CN": 7.9
+    },
+    {
       "subject": "Ngữ văn",
-      "HK1": 7.9,
-      "HK2": 7.6,
-      "CN": 7.7
+      "HK1": 7.4,
+      "HK2": 7.7,
+      "CN": 7.6
     },
     {
       "subject": "Lịch sử",
-      "HK1": 7.5,
-      "HK2": 9.0,
-      "CN": 8.5
+      "HK1": 6.9,
+      "HK2": 7.8,
+      "CN": 7.5
     },
     {
-      "subject": "Địa lí",
-      "HK1": 9.0,
-      "HK2": 8.3,
-      "CN": 8.5
-    },
-    {
-      "subject": "Anh)",
-      "HK1": 8.9,
-      "HK2": 9.0,
-      "CN": 9.0
-    },
-    {
-      "subject": "Công nghệ",
-      "HK1": 8.7,
+      "subject": "Địa lý",
+      "HK1": 8.3,
       "HK2": 8.4,
-      "CN": 8.5
+      "CN": 8.4
+    },
+    {
+      "subject": "Tiếng Anh",
+      "HK1": 6.1,
+      "HK2": 6.8,
+      "CN": 6.6
+    },
+    {
+      "subject": "nghệ",
+      "HK1": 8.1,
+      "HK2": 9.1,
+      "CN": 8.8
+    },
+    {
+      "subject": "GDQP",
+      "HK1": 7.6,
+      "HK2": 8.5,
+      "CN": 8.2
     },
     {
       "subject": "Thể dục",
@@ -69,16 +69,22 @@
       "CN": "Đ"
     },
     {
-      "subject": "GDQP",
-      "HK1": 8.4,
-      "HK2": 9.1,
-      "CN": 8.9
+      "subject": "GDCD",
+      "HK1": 8.0,
+      "HK2": 8.3,
+      "CN": 8.2
     },
     {
-      "subject": "Điểm TB",
-      "HK1": 8.3,
+      "subject": "Tin học",
+      "HK1": 8.4,
+      "HK2": 9.0,
+      "CN": 8.8
+    },
+    {
+      "subject": "ĐTB",
+      "HK1": 7.7,
       "HK2": 8.3,
-      "CN": 8.3
+      "CN": 8.1
     }
   ]
 }
